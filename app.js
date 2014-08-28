@@ -18,6 +18,10 @@ angular.module('ossdbWeb').config(function($stateProvider, $urlRouterProvider) {
         url: '/package',
         templateUrl: 'partial/package/package.html'
     });
+    $stateProvider.state('home', {
+        url: '/home',
+        templateUrl: 'partial/home/home.html'
+    });
     /* Add New States Above */
     $urlRouterProvider.otherwise('/home');
 

@@ -5,12 +5,24 @@ angular.module('ossdbWeb').factory('$ossdb',['$http', function($http) {
 
     var baseUrl = 'http://' + window.location.hostname + ':' + port
 
+    function get(url, cb) {
+        $http.get(baseUrl + url).success(function(resp) {
+            cb(resp);
+        });
+    }
+
 	var ossdb = {
+        getOsspList: function(cb) {
+            get('/ossp', cb);
+        },
+        getLicenseList: function(cb) {
+            get('/license', cb);
+        },
+        getPackageList: function(cb) {
+            get('/package', cb);
+        },
         getProjectList: function(cb) {
-            console.log('ossdb.getProjectList');
-            $http.get(baseUrl + '/project').success(function(project) {
-                cb(project);
-            });
+            get('/project', cb);
         }
     };
 

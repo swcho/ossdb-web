@@ -1,4 +1,26 @@
 <div class="col-md-12" ng-controller="OsspCtrl">
-
-
+    <div class="row">
+        <table class="table">
+            <thread>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Home</th>
+                </tr>
+            </thread>
+            <tbody ng-repeat="oss in ossList">
+            <td>{{oss.id}}</td>
+            <td><a href="oss/{{oss.id}}">{{oss.name}}</a></td>
+            <td><a href="{{oss.projectUrl}}">{{oss.projectUrl}}</a></td>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></pagination>
+    </div>
+    <div class="row">
+        <div class="btn-group">
+            <a class="btn btn-primary pull-right" href="oss/new">Add</a>
+        </div>
+    </div>
 </div>
