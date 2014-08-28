@@ -1,0 +1,27 @@
+<div class="col-md-12" ng-controller="OsspDetailCtrl">
+    <div class="form-group">
+        <label>Open Source Project Name</label>
+        <input type="text" id="name" class="form-control" ng-model="name" ng-change="checkChanged()" required>
+    </div>
+    <div class="form-group">
+        <label for="home">Project Home Page</label>
+        <input type="text" id="home" class="form-control" ng-model="projectUrl" ng-change="checkChanged()">
+    </div>
+    <div class="form-group sample-show-hide" ng-show="canSave">
+        <button class="form-control btn btn-primary" ng-click="upsert()">Save</button>
+    </div>
+    <table class="table table-condensed table-hover">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Package</th>
+            <th>License</th>
+        </tr>
+        </thead>
+        <tbody ng-repeat="p in oss.packages">
+        <td>{{p.id}}</td>
+        <td><a href="package/{{p.id}}">{{p.name}}</a></td>
+        <td><a href="license/{{p.licenseId}}" ng-repeat="l in _licenseList | filter:{id:p.licenseId}">{{l.name}}</a></td>
+        </tbody>
+    </table>
+</div>
