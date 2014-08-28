@@ -6,6 +6,18 @@ angular.module('ossdbWeb').config(function($stateProvider, $urlRouterProvider) {
         url: '/project',
         templateUrl: 'partial/project/project.html'
     });
+    $stateProvider.state('ossp', {
+        url: '/ossp',
+        templateUrl: 'partial/ossp/ossp.html'
+    });
+    $stateProvider.state('license', {
+        url: '/license',
+        templateUrl: 'partial/license/license.html'
+    });
+    $stateProvider.state('package', {
+        url: '/package',
+        templateUrl: 'partial/package/package.html'
+    });
     /* Add New States Above */
     $urlRouterProvider.otherwise('/home');
 
