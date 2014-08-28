@@ -1,4 +1,21 @@
-<div class="col-md-12" ng-controller="ProjectCtrl">
-
-
+<div class="row">
+    <div class="col-md-12" ng-controller="ProjectCtrl">
+        <table class="table">
+            <thread>
+                <tr>
+                    <th>ID</th>
+                    <th>Project ID</th>
+                    <th>Usages</th>
+                </tr>
+            </thread>
+            <tbody ng-repeat="project in projectList">
+            <td>{{project.id}}</td>
+            <td>{{project.projectId}}</td>
+            <td>{{project.packages.length}}</td>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></pagination>
 </div>
