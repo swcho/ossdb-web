@@ -22,6 +22,10 @@ angular.module('ossdbWeb').config(function($stateProvider, $urlRouterProvider) {
         url: '/home',
         templateUrl: 'partial/home/home.html'
     });
+    $stateProvider.state('ossp-detail', {
+        url: '/ossp-detail/:id',
+        templateUrl: 'partial/ossp-detail/ossp-detail.html'
+    });
     /* Add New States Above */
     $urlRouterProvider.otherwise('/home');
 
