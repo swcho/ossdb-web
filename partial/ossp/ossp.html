@@ -8,10 +8,12 @@
                     <th>Home</th>
                 </tr>
             </thread>
-            <tbody ng-repeat="oss in ossList">
-            <td>{{oss.id}}</td>
-            <td><a href="oss/{{oss.id}}">{{oss.name}}</a></td>
-            <td><a href="{{oss.projectUrl}}">{{oss.projectUrl}}</a></td>
+            <tbody ng-repeat="ossp in osspList">
+            <tr ng-click="goDetail(ossp.id)">
+                <td>{{ossp.id}}</td>
+                <td>{{ossp.name}}</td>
+                <td><a href="{{ossp.projectUrl}}">{{ossp.projectUrl}}</a></td>
+            </tr>
             </tbody>
         </table>
     </div>
@@ -20,7 +22,7 @@
     </div>
     <div class="row">
         <div class="btn-group">
-            <a class="btn btn-primary pull-right" href="oss/new">Add</a>
+            <a class="btn btn-primary pull-right" href="/#/ossp-detail/">New</a>
         </div>
     </div>
 </div>

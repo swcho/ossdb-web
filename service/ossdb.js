@@ -15,6 +15,11 @@ angular.module('ossdbWeb').factory('$ossdb',['$http', function($http) {
             cb(resp);
         });
     }
+    function remove(url, cb) {
+        $http.delete(baseUrl + url).success(function(resp) {
+            cb(resp);
+        });
+    }
 
 	var ossdb = {
         getOsspList: function(cb) {
@@ -29,6 +34,9 @@ angular.module('ossdbWeb').factory('$ossdb',['$http', function($http) {
             } else {
                 post('/ossp/create', ossp, cb);
             }
+        },
+        delOssp: function(id, cb) {
+            remove('/ossp/' + id, cb);
         },
         getLicenseList: function(cb) {
             get('/license', cb);

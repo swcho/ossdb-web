@@ -6,9 +6,15 @@ angular.module('ossdbWeb').controller('OsspDetailCtrl',function($scope, $state, 
     $scope.projectUrl = '';
     $scope.ossp = null;
     $scope.canSave = false;
+    $scope.canDelete = !create;
     $scope.checkChanged = function() {
         if (create) {
             if ($scope.name) {
+                $scope.canSave = true;
+            }
+        } else {
+            if ($scope.name != $scope.ossp.name ||
+                    $scope.projectUrl != $scope.ossp.projectUrl) {
                 $scope.canSave = true;
             }
         }
@@ -22,8 +28,13 @@ angular.module('ossdbWeb').controller('OsspDetailCtrl',function($scope, $state, 
             $state.go('ossp');
         });
     }
+    $scope.delete = function() {
+        $ossdb.delOssp($stateParams.id, function(resp) {
+            $state.go('ossp');
+        });
+    }
 
-    if (create) {
+    if (!create) {
         $ossdb.getOssp($stateParams.id, function(ossp) {
             $scope.name = ossp.name;
             $scope.projectUrl = ossp.projectUrl;
