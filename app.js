@@ -26,6 +26,18 @@ angular.module('ossdbWeb').config(function($stateProvider, $urlRouterProvider) {
         url: '/ossp-detail/:id',
         templateUrl: 'partial/ossp-detail/ossp-detail.html'
     });
+    $stateProvider.state('license-detail', {
+        url: '/license-detail',
+        templateUrl: 'partial/license-detail/license-detail.html'
+    });
+    $stateProvider.state('package-detail', {
+        url: '/package-detail',
+        templateUrl: 'partial/package-detail/package-detail.html'
+    });
+    $stateProvider.state('project-detail', {
+        url: '/project-detail',
+        templateUrl: 'partial/project-detail/project-detail.html'
+    });
     /* Add New States Above */
     $urlRouterProvider.otherwise('/home');
 
