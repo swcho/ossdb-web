@@ -14,7 +14,7 @@ angular.module('ossdbWeb').factory('$ossdb',['$http', function($http) {
         });
     }
     function setItem(model, item, cb) {
-        var method = item.id ? 'update' : 'create';
+        var method = item.id ? 'update/' + item.id : 'create';
         $http.post(baseUrl + '/' + model + '/' + method, item).success(function(resp) {
             cb(resp);
         });

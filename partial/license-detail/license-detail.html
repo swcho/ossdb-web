@@ -1,4 +1,38 @@
 <div class="col-md-12" ng-controller="LicenseDetailCtrl">
-
-
+    <div class="form-group">
+        <label>License Name</label>
+        <input type="text" class="form-control" ng-model="name" ng-change="checkChanged()" required>
+    </div>
+    <label class="checkbox">
+        <input type="checkbox" ng-model="distributeLicense" ng-change="checkChanged()">
+        Distribute License
+    </label>
+    <label class="checkbox">
+        <input type="checkbox" ng-model="distributeSource" ng-change="checkChanged()">
+        Distribute Source
+    </label>
+    <div class="form-group sample-show-hide" ng-show="canSave">
+        <button class="form-control btn btn-primary" ng-click="upsert()">Save</button>
+    </div>
+    <div class="form-group sample-show-hide" ng-show="canDelete">
+        <button class="form-control btn btn-primary" ng-click="remove()">Delete</button>
+    </div>
+    <table class="table table-condensed table-hover">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Package</th>
+            <th>OSSP</th>
+        </tr>
+        </thead>
+        <tbody ng-repeat="p in license.packages">
+        <td>{{p.id}}</td>
+        <td><a href="package/{{p.id}}">{{p.name}}</a></td>
+        <td><a href="license/{{p.licenseId}}" ng-repeat="l in _licenseList | filter:{id:p.licenseId}">{{l.name}}</a>
+        </td>
+        </tbody>
+    </table>
+    <div class="btn-group">
+        <a class="btn btn-primary pull-right" href="/#/license">Back to License List</a>
+    </div>
 </div>

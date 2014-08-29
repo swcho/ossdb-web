@@ -27,15 +27,15 @@ angular.module('ossdbWeb').config(function($stateProvider, $urlRouterProvider) {
         templateUrl: 'partial/ossp-detail/ossp-detail.html'
     });
     $stateProvider.state('license-detail', {
-        url: '/license-detail',
+        url: '/license-detail/:id',
         templateUrl: 'partial/license-detail/license-detail.html'
     });
     $stateProvider.state('package-detail', {
-        url: '/package-detail',
+        url: '/package-detail/:id',
         templateUrl: 'partial/package-detail/package-detail.html'
     });
     $stateProvider.state('project-detail', {
-        url: '/project-detail',
+        url: '/project-detail/:id',
         templateUrl: 'partial/project-detail/project-detail.html'
     });
     /* Add New States Above */
