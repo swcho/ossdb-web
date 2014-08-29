@@ -9,7 +9,7 @@ angular.module('ossdbWeb').controller('LicenseCtrl',function($scope, $state, $os
         });
     }
 
-    $scope.itemsPerPage = 10;
+    $scope.itemsPerPage = 5;
     $scope.currentPage = 1;
     $scope.pageChanged = function() {
         update();

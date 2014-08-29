@@ -1,11 +1,11 @@
 <div class="col-md-12" ng-controller="OsspDetailCtrl">
     <div class="form-group">
         <label>Open Source Project Name</label>
-        <input type="text" id="name" class="form-control" ng-model="name" ng-change="checkChanged()" required>
+        <input type="text" class="form-control" ng-model="name" ng-change="checkChanged()" required>
     </div>
     <div class="form-group">
-        <label for="home">Project Home Page</label>
-        <input type="text" id="home" class="form-control" ng-model="projectUrl" ng-change="checkChanged()">
+        <label>Project Home Page</label>
+        <input type="text" class="form-control" ng-model="projectUrl" ng-change="checkChanged()">
     </div>
     <div class="form-group sample-show-hide" ng-show="canSave">
         <button class="form-control btn btn-primary" ng-click="upsert()">Save</button>

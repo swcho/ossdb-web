@@ -1,4 +1,36 @@
 <div class="col-md-12" ng-controller="PackageDetailCtrl">
-
-
+    <div class="form-group">
+        <label>Package Name</label>
+        <input type="text" class="form-control" ng-model="name" ng-change="checkChanged()" required>
+    </div>
+    <div class="form-group">
+        <label>OSS</label>
+        <select class="form-control" ng-model="selectedOssp" ng-change="checkChanged()"  ng-options="o.name for o in osspList"></select>
+    </div>
+    <div class="form-group">
+        <label>License</label>
+        <select class="form-control" ng-model="selectedLicense"  ng-change="checkChanged()" ng-options="l.name for l in licenseList"></select>
+    </div>
+    <div class="form-group sample-show-hide" ng-show="canSave">
+        <button class="form-control btn btn-primary" ng-click="upsert()">Save</button>
+    </div>
+    <div class="form-group sample-show-hide" ng-show="canDelete">
+        <button class="form-control btn btn-primary" ng-click="delete()">Delete</button>
+    </div>
+    <table class="table table-condensed table-hover">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Project ID</th>
+        </tr>
+        </thead>
+        <tbody ng-repeat="p in package.projects">
+        <td>{{p.id}}</td>
+        <td><a href="/#/project/{{p.id}}">{{p.projectId}}</a></td>
+        </td>
+        </tbody>
+    </table>
+    <div class="btn-group">
+        <a class="btn btn-primary pull-right" href="/#/package">Back to package List</a>
+    </div>
 </div>

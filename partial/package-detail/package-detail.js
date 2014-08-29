@@ -1,4 +1,100 @@
-angular.module('ossdbWeb').controller('PackageDetailCtrl',function($scope){
+angular.module('ossdbWeb').controller('PackageDetailCtrl',function($scope, $state, $stateParams, $ossdb){
 
+    var create = $stateParams.id ? false: true;
+    var modelPackage = $ossdb.model('package');
+    var modelOssp = $ossdb.model('ossp');
+    var modelLicense = $ossdb.model('license');
 
+    $scope.name = '';
+    $scope.ossp = {};
+    $scope.license = {};
+    $scope.package = null;
+    $scope.canSave = false;
+    $scope.canDelete = !create;
+    $scope.osspList = null;
+    $scope.licenseList = null;
+    $scope.checkChanged = function() {
+        if (create) {
+            $scope.canSave = $scope.name ? true: false;
+        } else {
+            if ($scope.name != $scope.ossp.name ||
+                $scope.ossp.id != $scope.package.ossp.id ||
+                $scope.license.id != $scope.package.license.id ) {
+                $scope.canSave = true;
+            }
+        }
+    };
+    $scope.upsert = function() {
+        var pkg = $scope.package || {};
+        pkg.name = $scope.name;
+
+//        var i, len = $scope.osspList.length, item;
+//        for (i=0; i<len; i++) {
+//            item = $scope.osspList[i];
+//            if ($scope.selectedOssp == item.name) {
+//                pkg.ossp = item.id;
+//                break;
+//            }
+//        }
+//        len = $scope.licenseList.length;
+//        for (i=0; i<len; i++) {
+//            item = $scope.licenseList[i];
+//            if ($scope.selectedLicense == item.name) {
+//                pkg.license = item.id;
+//                break;
+//            }
+//        }
+        if ($scope.selectedOssp) {
+            pkg.ossp = $scope.selectedOssp.id;
+        }
+        if ($scope.selectedLicense) {
+            pkg.license = $scope.selectedLicense.id;
+        }
+
+        console.log(pkg);
+        modelPackage.setItem(pkg, function(resp) {
+            $state.go('package');
+        });
+    };
+    $scope.delete = function() {
+        modelPackage.remove($stateParams.id, function(resp) {
+            $state.go('package');
+        });
+    };
+
+    function getById() {
+        if (!create && $scope.osspList && $scope.licenseList) {
+            modelPackage.getById($stateParams.id, function(pkg) {
+                $scope.name = pkg.name;
+                $scope.ossp = pkg.ossp || {};
+                $scope.license = pkg.license || {};
+                $scope.package = pkg;
+
+                var i, len, item;
+                len = $scope.osspList.length;
+                for (i=0; i<len; i++) {
+                    item = $scope.osspList[i];
+                    if (item.id == $scope.ossp.id) {
+                        $scope.selectedOssp = item;
+                    }
+                }
+                len = $scope.licenseList.length;
+                for (i=0; i<len; i++) {
+                    item = $scope.licenseList[i];
+                    if (item.id == $scope.license.id) {
+                        $scope.selectedLicense = item;
+                    }
+                }
+            });
+        }
+    }
+
+    modelOssp.getAll(function(osspList) {
+        $scope.osspList = osspList;
+        getById();
+    });
+    modelLicense.getAll(function(licenseList) {
+        $scope.licenseList = licenseList;
+        getById();
+    });
 });

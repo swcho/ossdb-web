@@ -1,4 +1,40 @@
 <div class="col-md-12" ng-controller="PackageCtrl">
-
-
+    <div class="row">
+        <table class="table table-hover">
+            <thread>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Usage Count</th>
+                    <th>OSSP</th>
+                    <th>License</th>
+                    <th>L</th>
+                    <th>S</th>
+                </tr>
+            </thread>
+            <tbody ng-repeat="package in packageList">
+            <tr ng-click="goDetail(package.id)">
+                <td>{{package.id}}</td>
+                <td>{{package.name}}</td>
+                <td>{{package.projects.length}}</td>
+                <td>{{package.ossp.name}}</td>
+                <td>{{package.license.name}}</td>
+                <td>{{package.license.distributeLicense}}</td>
+                <td>{{package.license.distributeSource}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row text-center">
+        <pagination class="centered"
+                    total-items="totalItems"
+                    items-per-page="itemsPerPage"
+                    ng-model="currentPage"
+                    ng-change="pageChanged()"></pagination>
+    </div>
+    <div class="row">
+        <div class="btn-group">
+            <a class="btn btn-primary pull-right" href="/#/package-detail/">Add new package</a>
+        </div>
+    </div>
 </div>

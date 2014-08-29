@@ -1,8 +1,13 @@
 angular.module('ossdbWeb').factory('$ossdb',['$http', function($http) {
 
     var port = 1337;
-    var baseUrl = 'http://' + window.location.hostname + ':' + port
+    var baseUrl = 'http://' + window.location.hostname + ':' + port;
 
+    function getAll(model, cb) {
+        $http.get(baseUrl + '/' + model).success(function(resp) {
+            cb(resp);
+        });
+    }
     function getPage(model, page, limit, sort, cb) {
         $http.get(baseUrl + '/' + model + '/page?no=' + page + '&limit=' + limit + '&sort=' + sort).success(function(resp) {
             cb(resp);
@@ -28,6 +33,9 @@ angular.module('ossdbWeb').factory('$ossdb',['$http', function($http) {
 	var ossdb = {
         model: function(name) {
             return {
+                getAll: function(cb) {
+                    getAll(name, cb);
+                },
                 getPage: function(page, limit, sort, cb) {
                     getPage(name, page, limit, sort, cb);
                 },

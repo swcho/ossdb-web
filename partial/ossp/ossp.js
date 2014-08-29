@@ -9,7 +9,7 @@ angular.module('ossdbWeb').controller('OsspCtrl',function($scope, $state, $ossdb
         });
     }
 
-    $scope.itemsPerPage = 10;
+    $scope.itemsPerPage = 5;
     $scope.currentPage = 1;
     $scope.pageChanged = function() {
         update();
