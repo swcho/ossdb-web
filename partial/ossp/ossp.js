@@ -1,7 +1,9 @@
-angular.module('ossdbWeb').controller('OsspCtrl',function($scope, $state,$ossdb){
+angular.module('ossdbWeb').controller('OsspCtrl',function($scope, $state, $ossdb){
+
+    var model = $ossdb.model('ossp');
 
     function update() {
-        $ossdb.getOsspList($scope.currentPage, $scope.itemsPerPage, 'name', function(resp) {
+        model.getPage($scope.currentPage, $scope.itemsPerPage, 'name', function(resp) {
             $scope.osspList = resp.items;
             $scope.totalItems = resp.count;
         });
