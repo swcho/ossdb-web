@@ -1,4 +1,29 @@
 <div class="col-md-12" ng-controller="LicenseCtrl">
-
-
+    <div class="row">
+        <table class="table table-hover">
+            <thread>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Type</th>
+                </tr>
+            </thread>
+            <tbody ng-repeat="license in licenseList">
+            <tr ng-click="goDetail(license.id)">
+                <td>{{license.id}}</td>
+                <td><a href="license/{{license.id}}">{{license.name}}</a></td>
+                <td>{{license.type}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row text-center">
+        <pagination class="centered" total-items="totalItems" ng-model="currentPage"
+                    ng-change="pageChanged()"></pagination>
+    </div>
+    <div class="row">
+        <div class="btn-group">
+            <a class="btn btn-primary pull-right" href="/#/ossp-detail/">Add new License</a>
+        </div>
+    </div>
 </div>

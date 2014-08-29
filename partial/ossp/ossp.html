@@ -18,7 +18,11 @@
         </table>
     </div>
     <div class="row text-center">
-        <pagination class="centered" total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></pagination>
+        <pagination class="centered"
+                    total-items="totalItems"
+                    items-per-page="itemsPerPage"
+                    ng-model="currentPage"
+                    ng-change="pageChanged()"></pagination>
     </div>
     <div class="row">
         <div class="btn-group">
