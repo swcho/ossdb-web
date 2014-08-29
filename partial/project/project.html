@@ -1,6 +1,6 @@
 <div class="col-md-12" ng-controller="ProjectCtrl">
     <div class="row">
-        <table class="table">
+        <table class="table table-hover">
             <thread>
                 <tr>
                     <th>ID</th>
@@ -9,13 +9,24 @@
                 </tr>
             </thread>
             <tbody ng-repeat="project in projectList">
-            <td>{{project.id}}</td>
-            <td>{{project.projectId}}</td>
-            <td>{{project.packages.length}}</td>
+            <tr ng-click="goDetail(project.id)">
+                <td>{{project.id}}</td>
+                <td>{{project.projectId}}</td>
+                <td>{{project.packages.length}}</td>
+            </tr>
             </tbody>
         </table>
     </div>
+    <div class="row text-center">
+        <pagination class="centered"
+                    total-items="totalItems"
+                    items-per-page="itemsPerPage"
+                    ng-model="currentPage"
+                    ng-change="pageChanged()"></pagination>
+    </div>
     <div class="row">
-        <pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></pagination>
+        <div class="btn-group">
+            <a class="btn btn-primary pull-right" href="/#/project-detail/">Add new project</a>
+        </div>
     </div>
 </div>

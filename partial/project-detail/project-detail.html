@@ -1,4 +1,29 @@
 <div class="col-md-12" ng-controller="ProjectDetailCtrl">
-
-
+    <div class="form-group">
+        <label>Project ID</label>
+        <input type="text" id="name" class="form-control" ng-model="projectId" ng-change="checkChanged()">
+    </div>
+    <div class="form-group sample-show-hide" ng-show="canSave">
+        <button class="form-control btn btn-primary" ng-click="upsert()">Save</button>
+    </div>
+    <div class="form-group sample-show-hide" ng-show="canDelete">
+        <button class="form-control btn btn-primary" ng-click="remove()">Delete</button>
+    </div>
+    <table class="table table-condensed table-hover">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Package</th>
+            <th>License</th>
+        </tr>
+        </thead>
+        <tbody ng-repeat="p in project.packages">
+        <td>{{p.id}}</td>
+        <td><a href="package/{{p.id}}">{{p.name}}</a></td>
+        <td><a href="license/{{p.licenseId}}" ng-repeat="l in _licenseList | filter:{id:p.licenseId}">{{l.name}}</a></td>
+        </tbody>
+    </table>
+    <div class="btn-group">
+        <a class="btn btn-primary pull-right" href="/#/project">Back to project list</a>
+    </div>
 </div>
