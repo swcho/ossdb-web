@@ -33,7 +33,7 @@ angular.module('ossdbWeb').controller('ProjectDetailCtrl',function($scope, $stat
     };
 
     if (!create) {
-        model.getById($stateParams.id, function(project) {
+        model.getDetailById($stateParams.id, function(project) {
             $scope.projectId = project.projectId;
             $scope.project = project;
         });

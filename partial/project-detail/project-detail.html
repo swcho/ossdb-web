@@ -13,14 +13,14 @@
         <thead>
         <tr>
             <th>ID</th>
-            <th>Package</th>
+            <th>Package Name</th>
             <th>License</th>
         </tr>
         </thead>
         <tbody ng-repeat="p in project.packages">
         <td>{{p.id}}</td>
-        <td><a href="package/{{p.id}}">{{p.name}}</a></td>
-        <td><a href="license/{{p.licenseId}}" ng-repeat="l in _licenseList | filter:{id:p.licenseId}">{{l.name}}</a></td>
+        <td><a href="/#/package-detail/{{p.id}}">{{p.name}}</a></td>
+        <td><a href="/#/license/{{p.license.id}}">{{p.license.name}}</a></td>
         </tbody>
     </table>
     <div class="btn-group">

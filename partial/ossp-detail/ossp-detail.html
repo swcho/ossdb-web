@@ -21,7 +21,7 @@
             <th>License</th>
         </tr>
         </thead>
-        <tbody ng-repeat="p in oss.packages">
+        <tbody ng-repeat="p in ossp.packages">
         <td>{{p.id}}</td>
         <td><a href="package/{{p.id}}">{{p.name}}</a></td>
         <td><a href="license/{{p.licenseId}}" ng-repeat="l in _licenseList | filter:{id:p.licenseId}">{{l.name}}</a>

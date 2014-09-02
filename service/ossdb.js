@@ -18,6 +18,11 @@ angular.module('ossdbWeb').factory('$ossdb',['$http', function($http) {
             cb(resp);
         });
     }
+    function getDetailById(model, id, cb) {
+        $http.get(baseUrl + '/' + model + '/detail/' + id).success(function(resp) {
+            cb(resp);
+        });
+    }
     function setItem(model, item, cb) {
         var method = item.id ? 'update/' + item.id : 'create';
         $http.post(baseUrl + '/' + model + '/' + method, item).success(function(resp) {
@@ -41,6 +46,9 @@ angular.module('ossdbWeb').factory('$ossdb',['$http', function($http) {
                 },
                 getById: function(id, cb) {
                     getById(name, id, cb);
+                },
+                getDetailById: function(id, cb) {
+                    getDetailById(name, id, cb);
                 },
                 setItem: function(item, cb) {
                     setItem(name, item, cb);
