@@ -13,12 +13,12 @@ angular.module('ossdbWeb').controller('LicenseCtrl',function($scope, $state, $os
     $scope.currentPage = 1;
     $scope.pageChanged = function() {
         update();
-    }
+    };
     $scope.goDetail = function(id) {
         $state.go('license-detail', {
             id: id
         });
-    }
+    };
 
     update();
 

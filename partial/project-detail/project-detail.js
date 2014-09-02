@@ -13,7 +13,7 @@ angular.module('ossdbWeb').controller('ProjectDetailCtrl',function($scope, $stat
                 $scope.canSave = true;
             }
         } else {
-            if ($scope.projectId != $scope.project.projectId) {
+            if ($scope.projectId !== $scope.project.projectId) {
                 $scope.canSave = true;
             }
         }

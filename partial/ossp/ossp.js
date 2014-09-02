@@ -13,12 +13,12 @@ angular.module('ossdbWeb').controller('OsspCtrl',function($scope, $state, $ossdb
     $scope.currentPage = 1;
     $scope.pageChanged = function() {
         update();
-    }
+    };
     $scope.goDetail = function(id) {
         $state.go('ossp-detail', {
             id: id
         });
-    }
+    };
 
     update();
 

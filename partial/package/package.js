@@ -13,12 +13,12 @@ angular.module('ossdbWeb').controller('PackageCtrl',function($scope, $state, $os
     $scope.currentPage = 1;
     $scope.pageChanged = function() {
         update();
-    }
+    };
     $scope.goDetail = function(id) {
         $state.go('package-detail', {
             id: id
         });
-    }
+    };
 
     update();
 

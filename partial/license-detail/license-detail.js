@@ -15,9 +15,9 @@ angular.module('ossdbWeb').controller('LicenseDetailCtrl',function($scope, $stat
                 $scope.canSave = true;
             }
         } else {
-            if ($scope.name != $scope.license.name ||
-                    $scope.distributeLicense != $scope.license.distributeLicense ||
-                    $scope.distributeSource != $scope.license.distributeSource) {
+            if ($scope.name !== $scope.license.name ||
+                    $scope.distributeLicense !== $scope.license.distributeLicense ||
+                    $scope.distributeSource !== $scope.license.distributeSource) {
                 $scope.canSave = true;
             }
         }

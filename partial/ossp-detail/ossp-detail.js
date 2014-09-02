@@ -14,12 +14,12 @@ angular.module('ossdbWeb').controller('OsspDetailCtrl',function($scope, $state, 
                 $scope.canSave = true;
             }
         } else {
-            if ($scope.name != $scope.ossp.name ||
-                    $scope.projectUrl != $scope.ossp.projectUrl) {
+            if ($scope.name !== $scope.ossp.name ||
+                    $scope.projectUrl !== $scope.ossp.projectUrl) {
                 $scope.canSave = true;
             }
         }
-    }
+    };
     $scope.upsert = function() {
         var ossp = $scope.ossp || {};
         ossp.name = $scope.name;
@@ -28,12 +28,12 @@ angular.module('ossdbWeb').controller('OsspDetailCtrl',function($scope, $state, 
         model.setItem(ossp, function(resp) {
             $state.go('ossp');
         });
-    }
+    };
     $scope.delete = function() {
         model.remove($stateParams.id, function(resp) {
             $state.go('ossp');
         });
-    }
+    };
 
     if (!create) {
         model.getById($stateParams.id, function(ossp) {

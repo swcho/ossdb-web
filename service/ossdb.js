@@ -48,7 +48,7 @@ angular.module('ossdbWeb').factory('$ossdb',['$http', function($http) {
                 remove: function(id, cb) {
                     remove(name, id, cb);
                 }
-            }
+            };
         }
     };
 

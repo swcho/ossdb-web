@@ -17,9 +17,9 @@ angular.module('ossdbWeb').controller('PackageDetailCtrl',function($scope, $stat
         if (create) {
             $scope.canSave = $scope.name ? true: false;
         } else {
-            if ($scope.name != $scope.ossp.name ||
-                $scope.ossp.id != $scope.package.ossp.id ||
-                $scope.license.id != $scope.package.license.id ) {
+            if ($scope.name !== $scope.ossp.name ||
+                $scope.ossp.id !== $scope.package.ossp.id ||
+                $scope.license.id !== $scope.package.license.id ) {
                 $scope.canSave = true;
             }
         }
@@ -74,14 +74,14 @@ angular.module('ossdbWeb').controller('PackageDetailCtrl',function($scope, $stat
                 len = $scope.osspList.length;
                 for (i=0; i<len; i++) {
                     item = $scope.osspList[i];
-                    if (item.id == $scope.ossp.id) {
+                    if (item.id === $scope.ossp.id) {
                         $scope.selectedOssp = item;
                     }
                 }
                 len = $scope.licenseList.length;
                 for (i=0; i<len; i++) {
                     item = $scope.licenseList[i];
-                    if (item.id == $scope.license.id) {
+                    if (item.id === $scope.license.id) {
                         $scope.selectedLicense = item;
                     }
                 }
