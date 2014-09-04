@@ -52,7 +52,9 @@ module.exports = function (grunt) {
             spawn: false
         },
         files: [createFolderGlobs(['*.js','*.less','*.html']),'!_SpecRunner.html','!.grunt'],
-        tasks: [] //all the tasks are run dynamically during the watch event handler
+        tasks: [
+            'less'
+        ] //all the tasks are run dynamically during the watch event handler
       }
     },
     jshint: {
