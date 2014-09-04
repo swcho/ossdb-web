@@ -31,7 +31,8 @@ angular.module('ossdbWeb').config(function($stateProvider, $urlRouterProvider, $
         templateUrl: 'partial/license-detail/license-detail.html'
     });
     $stateProvider.state('package-detail', {
-        url: '/package-detail/:id/:fromPage',
+        url: '/package-detail/:id?fromPage',
+//        url: '/package-detail/{id}/{fromPage:(?:/[^/]+)?}',
         templateUrl: 'partial/package-detail/package-detail.html'
     });
     $stateProvider.state('project-detail', {
