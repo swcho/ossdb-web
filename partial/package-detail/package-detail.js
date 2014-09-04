@@ -1,4 +1,4 @@
-angular.module('ossdbWeb').controller('PackageDetailCtrl',function($scope, $state, $stateParams, $ossdb, $log){
+angular.module('ossdbWeb').controller('PackageDetailCtrl',function($scope, $state, $stateParams, $ossdb, $openhub, $log){
     $log.debug($stateParams);
     var create = $stateParams.id ? false: true;
     var fromPage = $stateParams.fromPage || 1;
@@ -64,6 +64,16 @@ angular.module('ossdbWeb').controller('PackageDetailCtrl',function($scope, $stat
             $state.go('package', {
                 page: fromPage
             });
+        });
+    };
+    $scope.findInOpenHubWeb = function() {
+        var encoded = encodeURIComponent($scope.package.name);
+        window.open("https://www.openhub.net/p?query=" + encoded + "&sort=relevance", '_blank');
+        window.open("https://www.google.com/search?q=" + encoded, '_blank').focus();
+    };
+    $scope.findInOpenHub = function() {
+        $openhub.query($scope.projectId, function(res) {
+            console.log(res);
         });
     };
 

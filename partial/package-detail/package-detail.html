@@ -5,11 +5,13 @@
     </div>
     <div class="form-group">
         <label>OSS</label>
-        <select class="form-control" ng-model="selectedOssp" ng-change="checkChanged()"  ng-options="o.name for o in osspList"></select>
+        <select class="form-control" ng-model="selectedOssp" ng-change="checkChanged()"
+                ng-options="o.name for o in osspList"></select>
     </div>
     <div class="form-group">
         <label>License</label>
-        <select class="form-control" ng-model="selectedLicense"  ng-change="checkChanged()" ng-options="l.name for l in licenseList"></select>
+        <select class="form-control" ng-model="selectedLicense" ng-change="checkChanged()"
+                ng-options="l.name for l in licenseList"></select>
     </div>
     <div class="form-group sample-show-hide" ng-show="canSave">
         <button class="form-control btn btn-primary" ng-click="upsert()">Save</button>
@@ -33,4 +35,18 @@
     <div class="btn-group">
         <a class="btn btn-primary pull-right" href="/#/package/{{fromPage}}">Back to package List</a>
     </div>
+    <div class="btn-group">
+        <a class="btn btn-primary pull-right" ng-click="findInOpenHubWeb()">Find in Open HUB WEB</a>
+        <!--<a class="btn btn-primary pull-right" ng-click="findInOpenHub()">Find in Open HUB</a>-->
+    </div>
+    <!--<div class="col-md-6">-->
+        <!--<iframe src="http://www.naver.com">-->
+
+        <!--</iframe>-->
+    <!--</div>-->
+    <!--<div class="col-md-6">-->
+        <!--<iframe>-->
+
+        <!--</iframe>-->
+    <!--</div>-->
 </div>

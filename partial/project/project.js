@@ -3,7 +3,7 @@ angular.module('ossdbWeb').controller('ProjectCtrl', function($scope, $state, $o
     var model = $ossdb.model('project');
 
     function update() {
-        model.getPage($scope.currentPage, $scope.itemsPerPage, 'name', function(resp) {
+        model.getPage($scope.currentPage, $scope.itemsPerPage, 'projectId', function(resp) {
             $scope.projectList = resp.items;
             $scope.totalItems = resp.count;
         });

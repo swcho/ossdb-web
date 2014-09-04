@@ -26,6 +26,7 @@
         "expect": true,
         "xdescribe": true,
         "xit": true,
-        "spyOn": true
+        "spyOn": true,
+        "xml2json": true
     }
 }
