@@ -1,6 +1,6 @@
 <div class="col-md-12" ng-controller="PackageCtrl">
     <div class="row">
-        <table class="table table-hover">
+        <table class="table">
             <thread>
                 <tr>
                     <th>ID</th>
@@ -12,10 +12,10 @@
                     <th>S</th>
                 </tr>
             </thread>
-            <tbody ng-repeat="package in packageList">
-            <tr ng-click="goDetail(package.id)">
+            <tbody>
+            <tr ng-repeat="package in packageList">
                 <td>{{package.id}}</td>
-                <td>{{package.name}}</td>
+                <td><a ui-sref="package-detail({id: package.id,fromPage: currentPage})">{{package.name}}</a></td>
                 <td>{{package.projects.length}}</td>
                 <td>{{package.ossp.name}}</td>
                 <td>{{package.license.name}}</td>

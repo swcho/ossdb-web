@@ -1,6 +1,7 @@
-angular.module('ossdbWeb').controller('PackageDetailCtrl',function($scope, $state, $stateParams, $ossdb){
-
+angular.module('ossdbWeb').controller('PackageDetailCtrl',function($scope, $state, $stateParams, $ossdb, $log){
+    $log.debug($stateParams);
     var create = $stateParams.id ? false: true;
+    var fromPage = $stateParams.fromPage || 1;
     var modelPackage = $ossdb.model('package');
     var modelOssp = $ossdb.model('ossp');
     var modelLicense = $ossdb.model('license');
@@ -13,6 +14,7 @@ angular.module('ossdbWeb').controller('PackageDetailCtrl',function($scope, $stat
     $scope.canDelete = !create;
     $scope.osspList = null;
     $scope.licenseList = null;
+    $scope.fromPage = fromPage;
     $scope.checkChanged = function() {
         if (create) {
             $scope.canSave = $scope.name ? true: false;
@@ -51,14 +53,17 @@ angular.module('ossdbWeb').controller('PackageDetailCtrl',function($scope, $stat
             pkg.license = $scope.selectedLicense.id;
         }
 
-        console.log(pkg);
         modelPackage.setItem(pkg, function(resp) {
-            $state.go('package');
+            $state.go('package', {
+                page: fromPage
+            });
         });
     };
     $scope.delete = function() {
         modelPackage.remove($stateParams.id, function(resp) {
-            $state.go('package');
+            $state.go('package', {
+                page: fromPage
+            });
         });
     };
 

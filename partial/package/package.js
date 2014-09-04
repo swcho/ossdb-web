@@ -4,7 +4,6 @@ angular.module('ossdbWeb').controller('PackageCtrl',function($scope, $state, $st
     var pageNo = parseInt($stateParams.page, 10) || 1;
 
     function update() {
-        $log.debug('update: ' + $scope.currentPage);
         model.getPage($scope.currentPage, $scope.itemsPerPage, 'name', function(resp) {
             $scope.packageList = resp.items;
             $scope.totalItems = resp.count;
