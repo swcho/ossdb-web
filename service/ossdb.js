@@ -8,6 +8,11 @@ angular.module('ossdbWeb').factory('$ossdb',['$http', function($http) {
             cb(resp);
         });
     }
+    function getCount(model, cb) {
+        $http.get(baseUrl + '/' + model + '/count').success(function(resp) {
+            cb(resp);
+        });
+    }
     function getPage(model, page, limit, sort, cb) {
         $http.get(baseUrl + '/' + model + '/page?no=' + page + '&limit=' + limit + '&sort=' + sort).success(function(resp) {
             cb(resp);
@@ -40,6 +45,9 @@ angular.module('ossdbWeb').factory('$ossdb',['$http', function($http) {
             return {
                 getAll: function(cb) {
                     getAll(name, cb);
+                },
+                getCount: function(cb) {
+                    getCount(name, cb);
                 },
                 getPage: function(page, limit, sort, cb) {
                     getPage(name, page, limit, sort, cb);

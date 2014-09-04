@@ -1,6 +1,6 @@
 angular.module('ossdbWeb', ['ui.bootstrap','ui.utils','ui.router','ngAnimate']);
 
-angular.module('ossdbWeb').config(function($stateProvider, $urlRouterProvider) {
+angular.module('ossdbWeb').config(function($stateProvider, $urlRouterProvider, $logProvider) {
 
     $stateProvider.state('project', {
         url: '/project',
@@ -15,7 +15,7 @@ angular.module('ossdbWeb').config(function($stateProvider, $urlRouterProvider) {
         templateUrl: 'partial/license/license.html'
     });
     $stateProvider.state('package', {
-        url: '/package',
+        url: '/package/:page',
         templateUrl: 'partial/package/package.html'
     });
     $stateProvider.state('home', {
@@ -41,6 +41,10 @@ angular.module('ossdbWeb').config(function($stateProvider, $urlRouterProvider) {
     /* Add New States Above */
     $urlRouterProvider.otherwise('/home');
 
+    /**
+     * enable log
+     */
+    $logProvider.debugEnabled(true);
 });
 
 angular.module('ossdbWeb').run(function($rootScope) {
