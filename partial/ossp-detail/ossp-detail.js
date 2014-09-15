@@ -34,12 +34,25 @@ angular.module('ossdbWeb').controller('OsspDetailCtrl',function($scope, $state, 
             $state.go('ossp');
         });
     };
+    // test: http://www.openhub.net/p/avahi
+    $scope.importOpenHub = function() {
+        if ($scope.urlOpenHub) {
+            model.importOpenHub($scope.urlOpenHub, function(resp) {
+                if (resp) {
+                    $state.go('ossp-detail', {
+                        id: resp.project.id
+                    });
+                }
+            });
+        }
+    };
 
     if (!create) {
         model.getById($stateParams.id, function(ossp) {
             $scope.name = ossp.name;
             $scope.projectUrl = ossp.projectUrl;
             $scope.ossp = ossp;
+            console.log(ossp);
         });
     }
 

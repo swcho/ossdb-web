@@ -39,6 +39,15 @@ angular.module('ossdbWeb').factory('$ossdb',['$http', function($http) {
             cb(resp);
         });
     }
+    function importOpenHub(model, url, cb) {
+        $http.get(baseUrl + '/' + model + '/importOpenHub', {
+            params: {
+                url: url
+            }
+        }).success(function(resp) {
+            cb(resp);
+        });
+    }
 
 	var ossdb = {
         model: function(name) {
@@ -63,6 +72,9 @@ angular.module('ossdbWeb').factory('$ossdb',['$http', function($http) {
                 },
                 remove: function(id, cb) {
                     remove(name, id, cb);
+                },
+                importOpenHub: function(url, cb) {
+                    importOpenHub(name, url, cb);
                 }
             };
         }

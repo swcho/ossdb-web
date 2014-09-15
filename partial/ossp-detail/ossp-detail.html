@@ -13,6 +13,24 @@
     <div class="form-group sample-show-hide" ng-show="canDelete">
         <button class="form-control btn btn-primary" ng-click="delete()">Delete</button>
     </div>
+    <div class="form-group" ng-show="!canDelete">
+        <label>OpenHub Project URL</label>
+        <input type="text" class="form-control" ng-model="urlOpenHub" ng-change="checkChanged()" required>
+        <a class="btn btn-primary pull-right" ng-click="importOpenHub()">Import from OpenHub</a>
+    </div>
+    <table class="table table-condensed table-hover">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>License</th>
+        </tr>
+        </thead>
+        <tbody ng-repeat="l in ossp.licenses">
+        <td>{{p.id}}</td>
+        <td><a href="/#/license-detail/{{l.id}}">{{l.name}}</a></td>
+        </td>
+        </tbody>
+    </table>
     <table class="table table-condensed table-hover">
         <thead>
         <tr>
