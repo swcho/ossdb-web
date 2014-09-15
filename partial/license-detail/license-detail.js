@@ -37,6 +37,15 @@ angular.module('ossdbWeb').controller('LicenseDetailCtrl',function($scope, $stat
             $state.go('license');
         });
     };
+    // test http://www.openhub.net/licenses/lgpl
+    $scope.importOpenHub = function() {
+        model.importOpenHub($scope.urlOpenHub, function(resp) {
+            console.log(resp);
+            $state.go('license-detail', {
+                id: resp.license.id
+            });
+        });
+    }
 
     if (!create) {
         model.getById($stateParams.id, function(license) {
