@@ -2,11 +2,17 @@
 
     <div class="form-group">
         <label>email</label>
-        <input type="text" class="form-control" ng-model="name" ng-change="checkChanged()" required>
+        <input type="text" class="form-control" ng-model="email" ng-change="checkChanged()" required>
     </div>
     <div class="form-group">
         <label>password</label>
-        <input type="text" class="form-control" ng-model="name" ng-change="checkChanged()" required>
+        <input type="text" class="form-control" ng-model="password" ng-change="checkChanged()" required>
+    </div>
+    <div class="form-group sample-show-hide" ng-show="canLogin">
+        <button class="form-control btn btn-primary" ng-click="login()">Login</button>
+    </div>
+    <div class="form-group sample-show-hide">
+        <button class="form-control btn btn-primary" ng-click="register()">Register</button>
     </div>
 
 </div>

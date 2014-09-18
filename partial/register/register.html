@@ -1,12 +1,23 @@
 <div class="col-md-12" ng-controller="RegisterCtrl">
 
     <div class="form-group">
-        <label>email</label>
+        <label>name</label>
         <input type="text" class="form-control" ng-model="name" ng-change="checkChanged()" required>
     </div>
     <div class="form-group">
+        <label>email</label>
+        <input type="text" class="form-control" ng-model="email" ng-change="checkChanged()" required>
+    </div>
+    <div class="form-group">
         <label>password</label>
-        <input type="text" class="form-control" ng-model="name" ng-change="checkChanged()" required>
+        <input type="password" class="form-control" ng-model="password" ng-change="checkChanged()" required>
+    </div>
+    <div class="form-group">
+        <label>retype password</label>
+        <input type="password" class="form-control" ng-model="password_confirm" ng-change="checkChanged()" required>
+    </div>
+    <div class="form-group sample-show-hide" ng-show="canRegister">
+        <button class="form-control btn btn-primary" ng-click="register()">Register</button>
     </div>
 
 </div>

@@ -50,11 +50,36 @@ angular.module('ossdbWeb').factory('$ossdb',['$http', function($http) {
     }
 
 	var ossdb = {
-        register: function() {
-
+        register: function(name, email, password, cb) {
+            $http.post(baseUrl + '/user/create', {
+                name: name,
+                email: email,
+                password: password
+            }).success(function(data) {
+                cb(null, data);
+            }).error(function(data, status, header, config) {
+                cb({
+                    data: data,
+                    status: status,
+                    header: header,
+                    config: config
+                });
+            });
         },
-        login: function() {
-
+        login: function(email, password, cb) {
+            $http.post(baseUrl + '/auth/login', {
+                email: email,
+                password: password
+            }).success(function(data) {
+                cb(null, data);
+            }).error(function(data, status, header, config) {
+                cb({
+                    data: data,
+                    status: status,
+                    header: header,
+                    config: config
+                });
+            });
         },
         profile: function(cb) {
             $http.get(baseUrl + '/auth/getInfo').success(function(data) {

@@ -1,6 +1,8 @@
 angular.module('ossdbWeb', ['ui.bootstrap', 'ui.utils', 'ui.router', 'ngAnimate']);
 
-angular.module('ossdbWeb').config(function ($stateProvider, $urlRouterProvider, $logProvider) {
+angular.module('ossdbWeb').config(function ($stateProvider, $urlRouterProvider, $logProvider, $httpProvider) {
+
+    $httpProvider.defaults.withCredentials = true;
 
     $stateProvider.state('project', {
         url: '/project',
@@ -88,6 +90,11 @@ angular.module('ossdbWeb').controller('NavCtrl',function($rootScope, $scope, $os
 
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
         console.log('$stateChangeStart: ' + fromState.name + '->' + toState.name);
+
+        if (toState.name == 'login' || toState.name == 'register') {
+            return;
+        }
+
         $ossdb.profile(function(err, user) {
             if (err) {
                 if (err.status === 401) {
