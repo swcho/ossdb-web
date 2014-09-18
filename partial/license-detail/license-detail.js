@@ -45,7 +45,7 @@ angular.module('ossdbWeb').controller('LicenseDetailCtrl',function($scope, $stat
                 id: resp.license.id
             });
         });
-    }
+    };
 
     if (!create) {
         model.getById($stateParams.id, function(license) {
