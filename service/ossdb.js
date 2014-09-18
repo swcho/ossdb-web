@@ -50,6 +50,24 @@ angular.module('ossdbWeb').factory('$ossdb',['$http', function($http) {
     }
 
 	var ossdb = {
+        register: function() {
+
+        },
+        login: function() {
+
+        },
+        profile: function(cb) {
+            $http.get(baseUrl + '/auth/getInfo').success(function(data) {
+                cb(null, data);
+            }).error(function(data, status, header, config) {
+                cb({
+                    data: data,
+                    status: status,
+                    header: header,
+                    config: config
+                });
+            });
+        },
         model: function(name) {
             return {
                 getAll: function(cb) {

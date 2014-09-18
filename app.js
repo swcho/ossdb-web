@@ -1,6 +1,6 @@
-angular.module('ossdbWeb', ['ui.bootstrap','ui.utils','ui.router','ngAnimate']);
+angular.module('ossdbWeb', ['ui.bootstrap', 'ui.utils', 'ui.router', 'ngAnimate']);
 
-angular.module('ossdbWeb').config(function($stateProvider, $urlRouterProvider, $logProvider) {
+angular.module('ossdbWeb').config(function ($stateProvider, $urlRouterProvider, $logProvider) {
 
     $stateProvider.state('project', {
         url: '/project',
@@ -39,6 +39,27 @@ angular.module('ossdbWeb').config(function($stateProvider, $urlRouterProvider, $
         url: '/project-detail/:id',
         templateUrl: 'partial/project-detail/project-detail.html'
     });
+
+    /**
+     * Anonymous routes
+     */
+    $stateProvider.state('anonymous', {
+        abstract: true,
+        template: '<ui-view/>',
+        data: {
+            access: 'anonymous'
+        }
+    }).state('login', {
+        url: '/login',
+        templateUrl: 'partial/login/login.html'
+    }).state('register', {
+        url: '/register',
+        templateUrl: 'partial/register/register.html'
+    }).state('profile', {
+        url: '/profile',
+        templateUrl: 'partial/profile/profile.html'
+    });
+
     /* Add New States Above */
     $urlRouterProvider.otherwise('/home');
 
@@ -48,9 +69,9 @@ angular.module('ossdbWeb').config(function($stateProvider, $urlRouterProvider, $
     $logProvider.debugEnabled(true);
 });
 
-angular.module('ossdbWeb').run(function($rootScope) {
+angular.module('ossdbWeb').run(function ($rootScope) {
 
-    $rootScope.safeApply = function(fn) {
+    $rootScope.safeApply = function (fn) {
         var phase = $rootScope.$$phase;
         if (phase === '$apply' || phase === '$digest') {
             if (fn && (typeof(fn) === 'function')) {
@@ -61,4 +82,21 @@ angular.module('ossdbWeb').run(function($rootScope) {
         }
     };
 
+});
+
+angular.module('ossdbWeb').controller('NavCtrl',function($rootScope, $scope, $ossdb, $state){
+
+    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+        console.log('$stateChangeStart: ' + fromState.name + '->' + toState.name);
+        $ossdb.profile(function(err, user) {
+            if (err) {
+                if (err.status === 401) {
+                    $state.go('login');
+                }
+                console.log(err);
+                return;
+            }
+            $scope.user = user;
+        });
+    });
 });
