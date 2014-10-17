@@ -91,13 +91,13 @@ angular.module('ossdbWeb').controller('NavCtrl',function($rootScope, $scope, $os
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
         console.log('$stateChangeStart: ' + fromState.name + '->' + toState.name);
 
-        if (toState.name == 'login' || toState.name == 'register') {
+        if (toState.name === 'login' || toState.name === 'register') {
             return;
         }
 
         $ossdb.profile(function(err, user) {
             if (err) {
-                if (err.status === 401) {
+                if (err.status === 401 || err.status === 403) {
                     $state.go('login');
                 }
                 console.log(err);

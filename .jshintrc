@@ -27,6 +27,7 @@
         "xdescribe": true,
         "xit": true,
         "spyOn": true,
-        "xml2json": true
+        "xml2json": true,
+        "validator": true
     }
 }
