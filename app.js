@@ -97,7 +97,8 @@ angular.module('ossdbWeb').controller('NavCtrl',function($rootScope, $scope, $os
 
         $ossdb.profile(function(err, user) {
             if (err) {
-                if (err.status === 401 || err.status === 403) {
+                //if (err.status === 401 || err.status === 403) {
+                if (err.status === 401) {
                     $state.go('login');
                 }
                 console.log(err);
