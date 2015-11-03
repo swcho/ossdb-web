@@ -2,6 +2,7 @@ angular.module('ossdbWeb').controller('OsspDetailCtrl',function($scope, $state, 
 
     var create = $stateParams.id ? false: true;
     var model = $ossdb.model('ossp');
+    var modelLicense = $ossdb.model('license');
 
     $scope.name = '';
     $scope.projectUrl = '';
@@ -47,6 +48,39 @@ angular.module('ossdbWeb').controller('OsspDetailCtrl',function($scope, $state, 
         }
     };
 
+    $scope.addLicense = function() {
+        if ($scope.licenseAdded) {
+            console.log($scope.licenseAdded);
+            if ($scope.ossp.licenses) {
+                $scope.ossp.licenses.push($scope.licenseAdded.id);
+            } else {
+                $scope.ossp.licenses = [$scope.licenseAdded.id];
+            }
+            model.setItem($scope.ossp, function() {
+                $state.go('ossp-detail', {
+                    id: $scope.ossp.id
+                }, {reload: true});
+            });
+        }
+    };
+
+    $scope.deleteLicense = function(licenseDeleted) {
+        var index = -1;
+        $scope.ossp.licenses.forEach(function(l, i) {
+            if (l.id == licenseDeleted.id) {
+                index = i;
+            }
+        });
+        if (index != -1) {
+            console.log($scope.ossp.licenses.splice(index, 1));
+        }
+        model.setItem($scope.ossp, function() {
+            $state.go('ossp-detail', {
+                id: $scope.ossp.id
+            }, {reload: true});
+        });
+    };
+
     if (!create) {
         model.getById($stateParams.id, function(ossp) {
             $scope.name = ossp.name;
@@ -56,4 +90,7 @@ angular.module('ossdbWeb').controller('OsspDetailCtrl',function($scope, $state, 
         });
     }
 
+    modelLicense.getAll(function(licenseList) {
+        $scope.licenseList = licenseList;
+    });
 });

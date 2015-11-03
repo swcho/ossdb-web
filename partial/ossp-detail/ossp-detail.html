@@ -23,14 +23,27 @@
         <tr>
             <th>ID</th>
             <th>License</th>
+            <th>Delete</th>
         </tr>
         </thead>
         <tbody ng-repeat="l in ossp.licenses">
         <td>{{p.id}}</td>
         <td><a ui-sref="license-detail({id: l.id})">{{l.name}}</a></td>
+        <td>
+            <div class="btn-group">
+                <a class="btn btn-primary pull-left" ng-click="deleteLicense(l)">Delete</a>
+            </div>
         </td>
         </tbody>
     </table>
+    <div class="form-group">
+        <label>License</label>
+        <select class="form-control" ng-model="licenseAdded" ng-change="checkChanged()"
+                ng-options="l.name for l in licenseList"></select>
+    </div>
+    <div class="btn-group" ng-show="licenseAdded">
+        <a class="btn btn-primary pull-right" ng-click="addLicense()">Add License</a>
+    </div>
     <table class="table table-condensed table-hover">
         <thead>
         <tr>
