@@ -6,14 +6,19 @@
                     <th>ID</th>
                     <th>Name</th>
                     <th>Home</th>
+                    <th>Licenses</th>
                 </tr>
             </thread>
             <tbody ng-repeat="ossp in osspList">
-            <tr ng-click="goDetail(ossp.id)">
-                <td>{{ossp.id}}</td>
-                <td>{{ossp.name}}</td>
+            <tr>
+                <td ng-click="goDetail(ossp.id)">{{ossp.id}}</td>
+                <td ng-click="goDetail(ossp.id)">{{ossp.name}}</td>
                 <td><a href="{{ossp.projectUrl}}">{{ossp.projectUrl}}</a></td>
-                <td>{{ossp.licenses}}</td>
+                <td>
+                    <p ng-repeat="license in ossp.licenses">
+                        <a ui-sref="license-detail({id: {{license.id}}})">{{license.name}}</a>
+                    </p>
+                </td>
             </tr>
             </tbody>
         </table>
