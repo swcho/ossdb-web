@@ -4,7 +4,7 @@ angular.module('ossdbWeb').factory('$ossdb',['$http', function($http) {
     var baseUrl = 'http://' + window.location.hostname + ':' + port;
 
     function getAll(model, cb) {
-        $http.get(baseUrl + '/' + model).success(function(resp) {
+        $http.get(baseUrl + '/' + model + '/getAll').success(function(resp) {
             cb(resp);
         });
     }

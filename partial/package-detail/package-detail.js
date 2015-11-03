@@ -87,6 +87,9 @@ angular.module('ossdbWeb').controller('PackageDetailCtrl',function($scope, $stat
 
                 var i, len, item;
                 len = $scope.osspList.length;
+                $scope.osspList.sort(function(a, b) {
+                    return a.name.localeCompare(b.name);
+                });
                 for (i=0; i<len; i++) {
                     item = $scope.osspList[i];
                     if (item.id === $scope.ossp.id) {

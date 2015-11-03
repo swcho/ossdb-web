@@ -20,7 +20,7 @@
         <tbody ng-repeat="p in project.packages">
         <td>{{p.id}}</td>
         <td><a ui-sref="package-detail({id:p.id})">{{p.name}}</a></td>
-        <td><a href="/#/license/{{p.license.id}}">{{p.license.name}}</a></td>
+        <td><a ui-sref="license-detail({id:p.license.id})">{{p.license.name}}</a></td>
         </tbody>
     </table>
     <div class="btn-group">

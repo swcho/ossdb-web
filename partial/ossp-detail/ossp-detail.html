@@ -27,7 +27,7 @@
         </thead>
         <tbody ng-repeat="l in ossp.licenses">
         <td>{{p.id}}</td>
-        <td><a href="/#/license-detail/{{l.id}}">{{l.name}}</a></td>
+        <td><a ui-sref="license-detail({id: l.id})">{{l.name}}</a></td>
         </td>
         </tbody>
     </table>
@@ -41,8 +41,8 @@
         </thead>
         <tbody ng-repeat="p in ossp.packages">
         <td>{{p.id}}</td>
-        <td><a href="package/{{p.id}}">{{p.name}}</a></td>
-        <td><a href="license/{{p.licenseId}}" ng-repeat="l in _licenseList | filter:{id:p.licenseId}">{{l.name}}</a>
+        <td><a ui-sref="package({id: p.id})">{{p.name}}</a></td>
+        <td><a ui-sref="license({id: p.licenseId})" ng-repeat="l in _licenseList | filter:{id:p.licenseId}">{{l.name}}</a>
         </td>
         </tbody>
     </table>
