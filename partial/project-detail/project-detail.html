@@ -19,11 +19,11 @@
         </thead>
         <tbody ng-repeat="p in project.packages">
         <td>{{p.id}}</td>
-        <td><a href="/#/package-detail/{{p.id}}">{{p.name}}</a></td>
+        <td><a ui-sref="package-detail({id:p.id})">{{p.name}}</a></td>
         <td><a href="/#/license/{{p.license.id}}">{{p.license.name}}</a></td>
         </tbody>
     </table>
     <div class="btn-group">
-        <a class="btn btn-primary pull-right" href="/#/project">Back to project list</a>
+        <a class="btn btn-primary pull-right" ui-sref="project">Back to project list</a>
     </div>
 </div>
