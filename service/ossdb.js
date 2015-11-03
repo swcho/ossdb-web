@@ -13,8 +13,14 @@ angular.module('ossdbWeb').factory('$ossdb',['$http', function($http) {
             cb(resp);
         });
     }
-    function getPage(model, page, limit, sort, cb) {
-        $http.get(baseUrl + '/' + model + '/page?no=' + page + '&limit=' + limit + '&sort=' + sort).success(function(resp) {
+    function getPage(model, page, limit, sort, populateList, cb) {
+        var url = baseUrl + '/' + model + '/page?no=' + page + '&limit=' + limit + '&sort=' + sort;
+        if (populateList) {
+            populateList.forEach(function(p) {
+                url += '&populate=' + p;
+            });
+        }
+        $http.get(url).success(function(resp) {
             cb(resp);
         });
     }
@@ -101,8 +107,8 @@ angular.module('ossdbWeb').factory('$ossdb',['$http', function($http) {
                 getCount: function(cb) {
                     getCount(name, cb);
                 },
-                getPage: function(page, limit, sort, cb) {
-                    getPage(name, page, limit, sort, cb);
+                getPage: function(page, limit, sort, populateList, cb) {
+                    getPage(name, page, limit, sort, populateList, cb);
                 },
                 getById: function(id, cb) {
                     getById(name, id, cb);
