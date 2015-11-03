@@ -1,4 +1,4 @@
-angular.module('ossdbWeb').controller('ProjectDetailCtrl',function($scope, $state, $stateParams, $ossdb){
+angular.module('ossdbWeb').controller('ProjectDetailCtrl',function($scope, $state, $stateParams, $ossdb, $http){
 
     var create = $stateParams.id ? false: true;
     var model = $ossdb.model('project');
@@ -30,6 +30,18 @@ angular.module('ossdbWeb').controller('ProjectDetailCtrl',function($scope, $stat
         model.remove($stateParams.id, function(resp) {
             $state.go('project');
         });
+    };
+
+    $scope.address = {};
+    $scope.refreshAddresses = function(address) {
+        console.log(address);
+        var params = {name: address};
+        return $http.get(
+            $ossdb.baseUrl() + '/package/search',
+            {params: params}
+        ).then(function(response) {
+                $scope.addresses = response
+            });
     };
 
     if (!create) {

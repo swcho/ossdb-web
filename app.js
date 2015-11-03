@@ -1,4 +1,4 @@
-angular.module('ossdbWeb', ['ui.bootstrap', 'ui.utils', 'ui.router', 'ngAnimate']);
+angular.module('ossdbWeb', ['ui.bootstrap', 'ui.utils', 'ui.router', 'ngAnimate', 'ngSanitize', 'ui.select']);
 
 angular.module('ossdbWeb').config(function ($stateProvider, $urlRouterProvider, $logProvider, $httpProvider) {
 

@@ -56,6 +56,9 @@ angular.module('ossdbWeb').factory('$ossdb',['$http', function($http) {
     }
 
 	var ossdb = {
+        baseUrl: function() {
+            return baseUrl;
+        },
         register: function(name, email, password, cb) {
             $http.post(baseUrl + '/user/create', {
                 name: name,

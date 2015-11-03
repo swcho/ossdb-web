@@ -23,6 +23,8 @@
     "less.js": "~1.6",
     "font-awesome": "~4.0",
     "xml2json": "~1.1.1",
-    "validator-js": "~3.18.1"
+    "validator-js": "~3.18.1",
+    "ui-select": "angular-ui-select#~0.13.2",
+    "angular-sanitize": "~1.4.7"
   }
 }
