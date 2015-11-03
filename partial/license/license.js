@@ -1,9 +1,10 @@
-angular.module('ossdbWeb').controller('LicenseCtrl',function($scope, $state, $ossdb){
+angular.module('ossdbWeb').controller('LicenseCtrl',function($scope, $state, $stateParams, $ossdb){
 
     var model = $ossdb.model('license');
+    var pageNo = parseInt($stateParams.page, 10) || 1;
 
     function update() {
-        model.getPage($scope.currentPage, $scope.itemsPerPage, 'name', function(resp) {
+        model.getPage($scope.currentPage, $scope.itemsPerPage, 'name', null, function(resp) {
             $scope.licenseList = resp.items;
             $scope.totalItems = resp.count;
         });
@@ -12,7 +13,9 @@ angular.module('ossdbWeb').controller('LicenseCtrl',function($scope, $state, $os
     $scope.itemsPerPage = 5;
     $scope.currentPage = 1;
     $scope.pageChanged = function() {
-        update();
+        $state.go('license', {
+            page :$scope.currentPage
+        });
     };
     $scope.goDetail = function(id) {
         $state.go('license-detail', {
@@ -20,6 +23,10 @@ angular.module('ossdbWeb').controller('LicenseCtrl',function($scope, $state, $os
         });
     };
 
-    update();
+    model.getCount(function(resp) {
+        $scope.totalItems = resp.count;
+        $scope.currentPage = pageNo;
+        update();
+    });
 
 });

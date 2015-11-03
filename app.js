@@ -5,15 +5,15 @@ angular.module('ossdbWeb').config(function ($stateProvider, $urlRouterProvider, 
     $httpProvider.defaults.withCredentials = true;
 
     $stateProvider.state('project', {
-        url: '/project',
+        url: '/project/:page',
         templateUrl: 'partial/project/project.html'
     });
     $stateProvider.state('ossp', {
-        url: '/ossp',
+        url: '/ossp/:page',
         templateUrl: 'partial/ossp/ossp.html'
     });
     $stateProvider.state('license', {
-        url: '/license',
+        url: '/license/:page',
         templateUrl: 'partial/license/license.html'
     });
     $stateProvider.state('package', {
@@ -25,11 +25,11 @@ angular.module('ossdbWeb').config(function ($stateProvider, $urlRouterProvider, 
         templateUrl: 'partial/home/home.html'
     });
     $stateProvider.state('ossp-detail', {
-        url: '/ossp-detail/:id',
+        url: '/ossp-detail/:id?fromPage',
         templateUrl: 'partial/ossp-detail/ossp-detail.html'
     });
     $stateProvider.state('license-detail', {
-        url: '/license-detail/:id',
+        url: '/license-detail/:id?fromPage',
         templateUrl: 'partial/license-detail/license-detail.html'
     });
     $stateProvider.state('package-detail', {
@@ -38,7 +38,7 @@ angular.module('ossdbWeb').config(function ($stateProvider, $urlRouterProvider, 
         templateUrl: 'partial/package-detail/package-detail.html'
     });
     $stateProvider.state('project-detail', {
-        url: '/project-detail/:id',
+        url: '/project-detail/:id?fromPage',
         templateUrl: 'partial/project-detail/project-detail.html'
     });
 
