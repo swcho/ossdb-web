@@ -84,6 +84,14 @@ angular.module('ossdbWeb').controller('PackageDetailCtrl',function($scope, $stat
                 $scope.ossp = pkg.ossp || {};
                 $scope.license = pkg.license || {};
                 $scope.package = pkg;
+                console.log(pkg);
+
+                if (pkg.file) {
+                    $scope.file_url = $ossdb.baseUrl() +
+                        '/package/download?id=' + pkg.id +
+                        '&name=' + pkg.name +
+                        '&file=' + pkg.file;
+                }
 
                 if ($scope.package.projects) {
                     $scope.package.projects.sort(function(a, b) {
@@ -109,6 +117,16 @@ angular.module('ossdbWeb').controller('PackageDetailCtrl',function($scope, $stat
                         $scope.selectedLicense = item;
                     }
                 }
+
+                $('#file-1').fileinput({
+                    showUpload: false,
+                    previewFileType: 'image',
+                    uploadUrl: $ossdb.baseUrl() + '/package/upload?id=' + $scope.package.id + '&name=' + $scope.package.name
+                }).on('fileuploaded', function() {
+                    $state.go($state.current, {}, {reload: true});
+                }).on('fileuploaderror', function() {
+                    $state.go($state.current, {}, {reload: true});
+                });
             });
         }
     }
@@ -122,11 +140,6 @@ angular.module('ossdbWeb').controller('PackageDetailCtrl',function($scope, $stat
         getById();
     });
 
-    $.fn.fileinput.defaults.showPreview = false;
-
-    $('#file-1').fileinput({
-        showUpload: false,
-        previewFileType: 'image'
-    });
+    //$.fn.fileinput.defaults.showPreview = false;
 
 });
