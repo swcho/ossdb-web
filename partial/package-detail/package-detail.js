@@ -7,6 +7,7 @@ angular.module('ossdbWeb').controller('PackageDetailCtrl',function($scope, $stat
     var modelLicense = $ossdb.model('license');
 
     $scope.name = '';
+    $scope.md5 = '';
     $scope.ossp = {};
     $scope.license = {};
     $scope.package = null;
@@ -21,7 +22,8 @@ angular.module('ossdbWeb').controller('PackageDetailCtrl',function($scope, $stat
         } else {
             if ($scope.name !== $scope.ossp.name ||
                 $scope.ossp.id !== $scope.package.ossp.id ||
-                $scope.license.id !== $scope.package.license.id ) {
+                $scope.license.id !== $scope.package.license.id ||
+                $scope.md5 !== $scope.package.md5) {
                 $scope.canSave = true;
             }
         }
@@ -52,6 +54,7 @@ angular.module('ossdbWeb').controller('PackageDetailCtrl',function($scope, $stat
         if ($scope.selectedLicense) {
             pkg.license = $scope.selectedLicense.id;
         }
+        pkg.md5 = $scope.md5;
 
         modelPackage.setItem(pkg, function(resp) {
             $state.go('package', {
@@ -92,6 +95,8 @@ angular.module('ossdbWeb').controller('PackageDetailCtrl',function($scope, $stat
                         '&name=' + pkg.name +
                         '&file=' + pkg.file;
                 }
+
+                $scope.md5 = pkg.md5;
 
                 if ($scope.package.projects) {
                     $scope.package.projects.sort(function(a, b) {

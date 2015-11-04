@@ -16,7 +16,13 @@
 
     <div class="form-group">
         <label>File</label>
+        <br/>
         <a href="{{file_url}}">{{package.file}}</a>
+    </div>
+
+    <div class="form-group">
+        <label>MD5</label>
+        <input type="text" class="form-control" ng-model="md5" ng-change="checkChanged()" required>
     </div>
 
     <form enctype="multipart/form-data">
