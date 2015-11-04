@@ -85,6 +85,12 @@ angular.module('ossdbWeb').controller('PackageDetailCtrl',function($scope, $stat
                 $scope.license = pkg.license || {};
                 $scope.package = pkg;
 
+                if ($scope.package.projects) {
+                    $scope.package.projects.sort(function(a, b) {
+                        return a.projectId.localeCompare(b.projectId);
+                    });
+                }
+
                 var i, len, item;
                 len = $scope.osspList.length;
                 $scope.osspList.sort(function(a, b) {
@@ -115,4 +121,12 @@ angular.module('ossdbWeb').controller('PackageDetailCtrl',function($scope, $stat
         $scope.licenseList = licenseList;
         getById();
     });
+
+    $.fn.fileinput.defaults.showPreview = false;
+
+    $('#file-1').fileinput({
+        showUpload: false,
+        previewFileType: 'image'
+    });
+
 });

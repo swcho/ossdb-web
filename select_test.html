@@ -84,26 +84,6 @@
 <script src="partial/profile/profile.js"></script>
 <!-- Add New Component JS Above -->
 
-<div class="navbar navbar-default" ng-controller="NavCtrl">
-    <a class="navbar-brand" href="#">OSSDB WEB</a>
-    <ul class="nav navbar-nav">
-        <li><a ui-sref="ossp">OSS</a></li>
-        <li><a ui-sref="license">License</a></li>
-        <li><a ui-sref="package">Package</a></li>
-        <li><a ui-sref="project">Project</a></li>
-    </ul>
-</div>
-
-<div>
-    <div id="content" class="container">
-        <div class="row">
-            <div ui-view>
-            </div>
-        </div>
-    </div>
-</div>
-
-
 <button class="btn btn-default btn-xs" ng-click="enable()">Enable ui-select</button>
 <button class="btn btn-default btn-xs" ng-click="disable()">Disable ui-select</button>
 <button class="btn btn-default btn-xs" ng-click="clear()">Clear ng-model</button>

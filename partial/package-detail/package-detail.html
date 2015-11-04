@@ -13,6 +13,11 @@
         <select class="form-control" ng-model="selectedLicense" ng-change="checkChanged()"
                 ng-options="l.name for l in licenseList"></select>
     </div>
+    <div class="form-group">
+        <label>File</label>
+        <input id="file-1" type="file" class="file" data-preview-file-type="image">
+    </div>
+
     <div class="form-group sample-show-hide" ng-show="canSave">
         <button class="form-control btn btn-primary" ng-click="upsert()">Save</button>
     </div>
